@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    [SerializeField] Vector2 launchForce; 
     Rigidbody2D rb;
+    bool isBallLaunched;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,10 +15,11 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Launch"))
+        if (Input.GetButtonDown("Launch") && !isBallLaunched)
         {
-            rb.AddForce(new Vector2(100f, 200f));
+            rb.AddForce(launchForce);
             transform.parent = null;
+            isBallLaunched = true;
         }
     }
 }
